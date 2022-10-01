@@ -3,6 +3,14 @@
 <div class="list-group" >
     @foreach(var item in Model.Categories)
     {
-        <a href="#" class="list-group-item" >@item.CategoryName</a>
+
+        var css = "list-group-item";
+        if (Model.CurrentCategory == item.CategoryId)
+        {
+            css += " active";
+        }
+        <a href="/product/index?category=@item.CategoryId" class="@css" >@item.CategoryName</a>
+
+       
     }
 </div>

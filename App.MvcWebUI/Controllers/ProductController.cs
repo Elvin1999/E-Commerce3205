@@ -12,12 +12,19 @@ namespace App.MvcWebUI.Controllers
             _productService = productService;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int page=1,int category=0)
         {
-            var products = _productService.GetAll();
+            int pageSize = 10;
+            var products = _productService.GetByCategory(category);
+
+
             var model = new ProductListViewModel
             {
-                Products = products
+                Products = products.Skip((page-1)*pageSize).Take(pageSize).ToList(),
+                PageCount=(int)Math.Ceiling(products.Count/(double)pageSize),
+                PageSize=pageSize,
+                CurrentCategory=category,
+                CurrentPage=page
             };
             return View(model);
         }
