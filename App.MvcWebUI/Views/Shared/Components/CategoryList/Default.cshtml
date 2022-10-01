@@ -1,0 +1,8 @@
+﻿@model CategoryListViewModel
+
+<div class="list-group" >
+    @foreach(var item in Model.Categories)
+    {
+        <a href="#" class="list-group-item" >@item.CategoryName</a>
+    }
+</div>
