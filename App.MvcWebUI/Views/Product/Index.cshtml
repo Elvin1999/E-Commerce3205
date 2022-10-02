@@ -41,9 +41,9 @@
                     @Html.DisplayFor(modelItem => item.UnitsInStock)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.ProductId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
+                    <a class="btn btn-xs btn-success" asp-action="AddToCart" asp-controller="Cart"  asp-route-productId="@item.ProductId">Add To Cart</a> 
+                 @*   <a asp-action="Details" asp-route-id="@item.ProductId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>*@
                 </td>
             </tr>
         }
