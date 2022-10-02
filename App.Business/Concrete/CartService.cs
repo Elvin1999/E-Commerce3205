@@ -17,6 +17,7 @@ namespace App.Business.Concrete
             {
                 cartLine.Quantity++;
             }
+            else
             cart.CartLines.Add(new CartLine() { Product = product, Quantity = 1 });
         }
 

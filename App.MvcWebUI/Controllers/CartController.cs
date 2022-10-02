@@ -32,5 +32,27 @@ namespace App.MvcWebUI.Controllers
 
             return RedirectToAction("Index", "Product");
         }
+
+
+        public IActionResult List()
+        {
+            var cart=_cartSessionService.GetCart();
+            CartListViewModel cartListViewModel = new CartListViewModel
+            {
+                Cart = cart
+            };
+            return View(cartListViewModel);
+        }
+
+        public IActionResult Remove(int productId)
+        {
+            var cart = _cartSessionService.GetCart();
+
+            _cartService.RemoveFromCart(cart, productId);
+            _cartSessionService.SetCart(cart);
+            TempData.Add("message", "Your Product , {0} was removed successfully from cart!");
+
+            return RedirectToAction("List");
+        }
     }
 }
