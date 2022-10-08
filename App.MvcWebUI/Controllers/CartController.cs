@@ -1,4 +1,5 @@
 ﻿using App.Business.Abstract;
+using App.Entities.Concrete;
 using App.MvcWebUI.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -53,6 +54,27 @@ namespace App.MvcWebUI.Controllers
             TempData.Add("message", "Your Product , {0} was removed successfully from cart!");
 
             return RedirectToAction("List");
+        }
+
+
+        public IActionResult Complete()
+        {
+            var shippingDetailsViewModel = new ShippingDetailsViewModel
+            {
+                ShippingDetails=new ShippingDetails()
+            };
+            return View(shippingDetailsViewModel);
+        }
+
+        [HttpPost]
+        public IActionResult Complete(ShippingDetails shippingDetails)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            TempData.Add("message", String.Format("Thank you {0}, you order is in process", shippingDetails.FirstName));
+            return View();
         }
     }
 }
